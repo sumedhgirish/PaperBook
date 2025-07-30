@@ -40,6 +40,10 @@ class QuestionPaper:
             sys.exit(1)
 
 
+class Book:
+    def __init__(self) -> None:
+        pass
+
 if __name__ == "__main__":
 
     def GATE_filter(text):
@@ -58,8 +62,10 @@ if __name__ == "__main__":
 
         # Can we allow for user interaction here?
 
-        lines = re.findall(r"((?:Q\.\d{1,}(.*))(?:\(A\)(.*))(?:\(B\)(.*))(?:\(C\)(.*))(?:\(D\)(.*))$)|(?:Q\.\d{1,}(.*)$)",
+        lines = re.findall(r"((?:Q\.\d{1,}(.*))(?:\(A\)(.*))(?:\(B\)(.*))(?:\(C\)(.*))(?:\(D\)(.*)))|(?:Q\.\d{1,}(.*))",
                            text, flags = (re.I | re.M))
+
+        print(lines)
 
         questions = []
         for question in lines:
@@ -79,8 +85,8 @@ if __name__ == "__main__":
 
         return questions
 
-    paper = QuestionPaper("./files/qps/CS1.pdf", GATE_filter)
+    paper = QuestionPaper("./files/qps/CS1-2024.pdf", GATE_filter)
     # if paper.ques_bank: print(paper.ques_bank[int(input(">> "))])
-    print(len(paper.ques_bank))
+    if paper.ques_bank: print(len(paper.ques_bank))
 
     sys.exit()
